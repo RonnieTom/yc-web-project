@@ -1,0 +1,91 @@
+/* ============ 全域重置 ============ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* ============ 時鐘容器 ============ */
+.clock-container {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 30px;
+    padding: 40px 60px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* ============ 時間數字 ============ */
+#clock {
+    display: inline-block;
+    font-size: 4.5rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-indent: 6px;                          /* 抵銷最後字元後的間距，視覺置中 */
+    font-variant-numeric: tabular-nums;        /* 數字等寬，秒數不跳動 */
+    background: linear-gradient(to right, #f7ff00, #db36a4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* drop-shadow 對「漸層文字」才有效，text-shadow 在此情境無效 */
+    filter: drop-shadow(0 0 12px rgba(219, 54, 164, 0.45));
+}
+
+/* ============ 日期顯示 ============ */
+.date-display {
+    margin-top: 15px;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    color: #d4e6f1;
+    opacity: 0.85;
+}
+
+/* ============ 入場動畫 ============ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============ 尊重「減少動態」偏好 ============ */
+@media (prefers-reduced-motion: reduce) {
+    .clock-container {
+        animation: none;
+    }
+}
+
+/* ============ 小螢幕適配 ============ */
+@media (max-width: 600px) {
+    #clock {
+        font-size: 2.8rem;
+        letter-spacing: 3px;
+        text-indent: 3px;
+    }
+    .clock-container {
+        padding: 25px 30px;
+    }
+    .date-display {
+        font-size: 1rem;
+    }
+}
